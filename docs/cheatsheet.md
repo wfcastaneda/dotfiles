@@ -178,10 +178,26 @@ Smart detection: moves between nvim splits when inside nvim, tmux panes otherwis
 
 ---
 
+## Shell Aliases
+
+| Alias | Action |
+|-------|--------|
+| `dev` | Launch tmux dev session |
+| `g` | git |
+| `k` | k9s (no splash) |
+| `kmin` | Switch to minikube |
+| `kctx` | Show current k8s context |
+| `kctxs` | List all k8s contexts |
+
+See `zsh/superpower/` for additional Superpower-specific aliases.
+
+---
+
 ## Config Locations
 
 | Tool | Location |
 |------|----------|
+| Zsh | `~/.zshrc` |
 | Neovim | `~/.config/nvim/init.lua` |
 | tmux | `~/.tmux.conf` |
 | Ghostty | `~/Library/Application Support/com.mitchellh.ghostty/config` |

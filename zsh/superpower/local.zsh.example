@@ -1,0 +1,23 @@
+# =============================================================================
+# LOCAL ZSH CONFIG EXAMPLE
+# =============================================================================
+# Copy this to ~/.zshrc.local and fill in your values.
+# This file is sourced at the end of .zshrc
+
+# =============================================================================
+# KUBERNETES CONTEXTS
+# =============================================================================
+# Set these to your cluster ARNs or context names
+
+export K8S_PRODUCTION_CONTEXT="arn:aws:eks:REGION:ACCOUNT:cluster/CLUSTER_NAME"
+export K8S_STAGING_CONTEXT="arn:aws:eks:REGION:ACCOUNT:cluster/CLUSTER_NAME"
+
+# =============================================================================
+# SUPERPOWER CONFIG
+# =============================================================================
+
+# Uncomment to use a different superpower directory
+# export SUPERPOWER_DIR="$HOME/superpower"
+
+# Source Superpower-specific config
+source ~/repos/dotfiles/zsh/superpower/superpower.zsh

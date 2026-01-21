@@ -4,6 +4,7 @@ My development environment configuration for macOS.
 
 ## What's Included
 
+- **Zsh** - Shell config with git/k8s prompt, aliases, and completions
 - **Neovim** - Modern editor with LSP, Telescope, and AI completion
 - **tmux** - Terminal multiplexer with session persistence
 - **Ghostty** - Fast, GPU-accelerated terminal emulator
@@ -88,16 +89,23 @@ mkdir -p ~/Library/Application\ Support/com.mitchellh.ghostty
 cp ~/repos/dotfiles/config/ghostty/config ~/Library/Application\ Support/com.mitchellh.ghostty/
 ```
 
-### Dev Command
+### Zsh
 
 ```bash
-# Add alias and SUPERPOWER_DIR to your shell (zsh example)
-echo 'export SUPERPOWER_DIR="${SUPERPOWER_DIR:-$HOME/superpower}"' >> ~/.zshrc
-echo 'alias dev="~/.tmux/layouts/dev.sh"' >> ~/.zshrc
+# Option 1: Copy (recommended for customization)
+cp ~/repos/dotfiles/zsh/.zshrc ~/.zshrc
+
+# Option 2: Symlink (for tracking updates)
+ln -sf ~/repos/dotfiles/zsh/.zshrc ~/.zshrc
+
+# Set up local overrides (for sensitive config like k8s URLs)
+cp ~/repos/dotfiles/zsh/superpower/local.zsh.example ~/.zshrc.local
+# Edit ~/.zshrc.local with your values
+
 source ~/.zshrc
 ```
 
-Note: The install script automatically detects your shell (zsh/bash/fish) and adds these to the correct rc file.
+The base `.zshrc` sources `~/.zshrc.local` at the end for machine-specific config.
 
 ## Usage
 
@@ -150,6 +158,7 @@ See [docs/cheatsheet.md](docs/cheatsheet.md) for the complete reference.
 
 ## Documentation
 
+- [docs/zsh.md](docs/zsh.md) - Zsh configuration explained
 - [docs/nvim.md](docs/nvim.md) - Neovim configuration explained
 - [docs/tmux.md](docs/tmux.md) - tmux configuration explained
 - [docs/ghostty.md](docs/ghostty.md) - Ghostty configuration explained
@@ -162,6 +171,7 @@ See [docs/cheatsheet.md](docs/cheatsheet.md) for the complete reference.
 
 | Config | Location |
 |--------|----------|
+| Zsh | `~/.zshrc` |
 | Neovim | `~/.config/nvim/init.lua` |
 | tmux | `~/.tmux.conf` |
 | tmux layouts | `~/.tmux/layouts/` |

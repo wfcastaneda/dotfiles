@@ -71,59 +71,27 @@ fi
 ln -sf "$DOTFILES/config/ghostty/config" "$GHOSTTY_DIR/config"
 echo -e "${GREEN}✓ Ghostty config linked${NC}"
 
-# Detect user's shell and configure rc file
-echo -e "${CYAN}Setting up shell configuration...${NC}"
-USER_SHELL=$(basename "$SHELL")
-case "$USER_SHELL" in
-    zsh)
-        RC_FILE="$HOME/.zshrc"
-        ;;
-    bash)
-        RC_FILE="$HOME/.bashrc"
-        ;;
-    fish)
-        RC_FILE="$HOME/.config/fish/config.fish"
-        mkdir -p "$HOME/.config/fish"
-        ;;
-    *)
-        RC_FILE="$HOME/.zshrc"
-        echo -e "${YELLOW}Unknown shell: $USER_SHELL, defaulting to .zshrc${NC}"
-        ;;
-esac
-
-# Add SUPERPOWER_DIR export
-if ! grep -q 'SUPERPOWER_DIR=' "$RC_FILE" 2>/dev/null; then
-    if [ "$USER_SHELL" = "fish" ]; then
-        echo 'set -gx SUPERPOWER_DIR "$HOME/superpower"' >> "$RC_FILE"
-    else
-        echo 'export SUPERPOWER_DIR="${SUPERPOWER_DIR:-$HOME/superpower}"' >> "$RC_FILE"
-    fi
-    echo -e "${GREEN}✓ SUPERPOWER_DIR export added to $RC_FILE${NC}"
-else
-    echo -e "${GREEN}✓ SUPERPOWER_DIR already configured${NC}"
-fi
-
-# Dev alias
-if ! grep -q 'alias dev=' "$RC_FILE" 2>/dev/null && [ "$USER_SHELL" != "fish" ]; then
-    echo 'alias dev="~/.tmux/layouts/dev.sh"' >> "$RC_FILE"
-    echo -e "${GREEN}✓ dev alias added to $RC_FILE${NC}"
-elif [ "$USER_SHELL" = "fish" ] && ! grep -q 'alias dev ' "$RC_FILE" 2>/dev/null; then
-    echo 'alias dev "~/.tmux/layouts/dev.sh"' >> "$RC_FILE"
-    echo -e "${GREEN}✓ dev alias added to $RC_FILE${NC}"
-else
-    echo -e "${GREEN}✓ dev alias already exists${NC}"
-fi
-
 echo ""
 echo -e "${GREEN}========================================${NC}"
 echo -e "${GREEN}Installation complete!${NC}"
 echo -e "${GREEN}========================================${NC}"
 echo ""
 echo -e "${CYAN}Next steps:${NC}"
-echo "1. Restart your terminal (or run: source ~/.zshrc)"
-echo "2. Open nvim to install plugins: nvim"
-echo "3. Start tmux and install plugins: tmux, then Ctrl+a Shift+I"
-echo "4. Install formatters:"
+echo "1. Set up Zsh config (choose one):"
+echo "   a) Copy:    cp $DOTFILES/zsh/.zshrc ~/.zshrc"
+echo "   b) Symlink: ln -sf $DOTFILES/zsh/.zshrc ~/.zshrc"
+echo ""
+echo "2. Set up local overrides:"
+echo "   cp $DOTFILES/zsh/superpower/local.zsh.example ~/.zshrc.local"
+echo "   # Edit ~/.zshrc.local with your K8S context URLs"
+echo ""
+echo "3. Restart your terminal (or run: source ~/.zshrc)"
+echo ""
+echo "4. Open nvim to install plugins: nvim"
+echo ""
+echo "5. Start tmux and install plugins: tmux, then Ctrl+a Shift+I"
+echo ""
+echo "6. Install formatters:"
 echo "   npm i -g prettier"
 echo "   go install mvdan.cc/gofumpt@latest"
 echo "   go install golang.org/x/tools/cmd/goimports@latest"
