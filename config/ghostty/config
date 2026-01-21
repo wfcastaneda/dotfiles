@@ -1,0 +1,65 @@
+# Font
+font-family = Berkeley Mono
+font-size = 13
+
+# Theme colors (converted from your iTerm2 theme)
+# Dark mode colors
+background = 000000
+background-opacity = 0.8
+foreground = e8ecf2
+
+# ANSI colors (dark mode)
+palette = 0=#494e56
+palette = 1=#ee8297
+palette = 2=#64b65f
+palette = 3=#ddb53e
+palette = 4=#6da5f9
+palette = 5=#b58ef8
+palette = 6=#66c2cd
+palette = 7=#b3bac3
+palette = 8=#6f7781
+palette = 9=#f2a5b4
+palette = 10=#79d171
+palette = 11=#dbb556
+palette = 12=#89bef9
+palette = 13=#cba9f9
+palette = 14=#79d3db
+palette = 15=#ffffff
+
+# Cursor
+cursor-color = 2f81f7
+cursor-text = 010805
+cursor-style = block
+cursor-style-blink = false
+
+# Selection
+selection-background = 304e75
+selection-foreground = e8ecf2
+
+# Native window chrome with minimal padding
+window-padding-x = 8
+window-padding-y = 8
+window-save-state = always
+
+# Scrollback
+scrollback-limit = 10000
+
+# Performance
+shell-integration = detect
+shell-integration-features = cursor,sudo,title
+
+# Minimal aesthetic
+window-title-font-family = Berkeley Mono
+confirm-close-surface = false
+quit-after-last-window-closed = true
+
+# Keybindings for splits
+keybind = cmd+d=new_split:right
+keybind = cmd+shift+t=new_split:down
+keybind = ctrl+h=goto_split:left
+keybind = ctrl+j=goto_split:bottom
+keybind = ctrl+k=goto_split:top
+keybind = ctrl+l=goto_split:right
+
+# Default working directory
+working-directory = /Users/will/superpower
