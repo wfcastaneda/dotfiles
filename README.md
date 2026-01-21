@@ -2,6 +2,8 @@
 
 My development environment configuration for macOS.
 
+![dev session](dev.png)
+
 ## What's Included
 
 - **Zsh** - Shell config with git/k8s prompt, aliases, and completions
