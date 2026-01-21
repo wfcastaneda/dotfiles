@@ -105,16 +105,16 @@ tmux new-session -d -s "$SESSION" -c "$WORK_DIR"
 # Split: new pane on RIGHT gets 60% width (left keeps 40% for Claude Code)
 tmux split-window -t "$SESSION:1" -h -p 60 -c "$WORK_DIR"
 
-# Split the right pane: bottom gets 15% for terminal
-tmux split-window -t "$SESSION:1" -v -p 15 -c "$WORK_DIR"
+# Split the right pane: bottom gets 10% for terminal
+tmux split-window -t "$SESSION:1" -v -p 10 -c "$WORK_DIR"
 
-# Move up to right-top pane and start nvim
+# Move up to right-top pane and start nvim (no args = shows dashboard)
 tmux select-pane -t "$SESSION:1" -U
-tmux send-keys "nvim ." Enter
+tmux send-keys "nvim" Enter
 
-# Select left pane and start Claude Code
+# Select left pane and start Claude Code in the repo
 tmux select-pane -t "$SESSION:1" -L
-tmux send-keys "claude" Enter
+tmux send-keys "cd $WORK_DIR && clear && claude" Enter
 
 # Rename window to repo name
 tmux rename-window -t "$SESSION:1" "$REPO"
