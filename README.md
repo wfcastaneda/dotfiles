@@ -97,13 +97,10 @@ cp ~/repos/dotfiles/config/ghostty/config ~/Library/Application\ Support/com.mit
 ### Zsh
 
 ```bash
-# Option 1: Copy (recommended for customization)
+# Copy config
 cp ~/repos/dotfiles/zsh/.zshrc ~/.zshrc
 
-# Option 2: Symlink (for tracking updates)
-ln -sf ~/repos/dotfiles/zsh/.zshrc ~/.zshrc
-
-# Set up local overrides (for sensitive config like k8s URLs)
+# Set up local overrides (for machine-specific config)
 cp ~/repos/dotfiles/zsh/superpower/local.zsh.example ~/.zshrc.local
 # Edit ~/.zshrc.local with your values
 

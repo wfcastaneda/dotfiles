@@ -1,7 +1,7 @@
 #!/bin/bash
 # Dotfiles installer
 
-set -e
+set -euo pipefail
 
 DOTFILES="$(cd "$(dirname "$0")" && pwd)"
 
@@ -19,6 +19,16 @@ for arg in "$@"; do
         --link)
             LINK_MODE=true
             ;;
+        --help|-h)
+            echo "Usage: ./install.sh [OPTIONS]"
+            echo ""
+            echo "Options:"
+            echo "  --link    Use symlinks instead of copies (changes to repo reflect immediately)"
+            echo "  --help    Show this help message"
+            echo ""
+            echo "By default, configs are copied. Use --link for symlinks."
+            exit 0
+            ;;
     esac
 done
 
@@ -32,7 +42,8 @@ install_config() {
     echo -e "${CYAN}Setting up ${name}...${NC}"
     mkdir -p "$dest_dir"
 
-    if [ -f "$dest" ] && [ ! -L "$dest" ]; then
+    # Back up existing file (whether regular file or symlink)
+    if [ -e "$dest" ] || [ -L "$dest" ]; then
         echo -e "${YELLOW}Backing up existing ${name} config...${NC}"
         mv "$dest" "$dest.backup.$(date +%s)"
     fi
@@ -95,30 +106,27 @@ install_config "Karabiner" "$DOTFILES/config/karabiner/karabiner.json" ~/.config
 # Claude Code
 install_config "Claude Code" "$DOTFILES/claude/settings.local.json" ~/.claude/settings.local.json
 
+# Zsh
+install_config "Zsh" "$DOTFILES/zsh/.zshrc" ~/.zshrc
+
 echo ""
 echo -e "${GREEN}========================================${NC}"
 echo -e "${GREEN}Installation complete!${NC}"
 echo -e "${GREEN}========================================${NC}"
 echo ""
 echo -e "${CYAN}Next steps:${NC}"
-echo "1. Set up Zsh config (choose one):"
-echo "   a) Copy:    cp $DOTFILES/zsh/.zshrc ~/.zshrc"
-echo "   b) Symlink: ln -sf $DOTFILES/zsh/.zshrc ~/.zshrc"
-echo ""
-echo "2. Set up local overrides:"
+echo "1. Set up local overrides (for machine-specific config):"
 echo "   cp $DOTFILES/zsh/superpower/local.zsh.example ~/.zshrc.local"
-echo "   # Edit ~/.zshrc.local with your K8S context URLs"
+echo "   # Edit ~/.zshrc.local with your values"
 echo ""
-echo "3. Restart your terminal (or run: source ~/.zshrc)"
+echo "2. Restart your terminal (or run: source ~/.zshrc)"
 echo ""
-echo "4. Open nvim to install plugins: nvim"
+echo "3. Open nvim to install plugins: nvim"
 echo ""
-echo "5. Start tmux and install plugins: tmux, then Ctrl+a Shift+I"
+echo "4. Start tmux and install plugins: tmux, then Ctrl+a Shift+I"
 echo ""
-echo "6. Install formatters:"
+echo "5. Install formatters (optional):"
 echo "   npm i -g prettier"
-echo "   go install mvdan.cc/gofumpt@latest"
-echo "   go install golang.org/x/tools/cmd/goimports@latest"
 echo "   brew install stylua"
 echo ""
 echo -e "${CYAN}Usage:${NC}"
