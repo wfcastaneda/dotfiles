@@ -58,6 +58,3 @@ keybind = ctrl+h=unbind
 keybind = ctrl+j=unbind
 keybind = ctrl+k=unbind
 keybind = ctrl+l=unbind
-
-# Default working directory (uses ~ expansion)
-working-directory = ~/superpower

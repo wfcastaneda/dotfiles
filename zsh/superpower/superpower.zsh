@@ -9,6 +9,7 @@
 # =============================================================================
 
 export SUPERPOWER_DIR="${SUPERPOWER_DIR:-$HOME/superpower}"
+export PROJECTS_DIR="$SUPERPOWER_DIR"  # For dev.sh compatibility
 export GOPRIVATE=github.com/superpowerdotcom/*
 
 # =============================================================================

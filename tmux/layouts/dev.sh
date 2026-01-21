@@ -1,11 +1,13 @@
 #!/bin/bash
 # Smart dev session launcher
-# Usage: dev [repo]     - Open repo from ~/superpower
+# Usage: dev [repo]     - Open repo from $PROJECTS_DIR (default: ~/repos)
 #        dev            - List available repos / active sessions
 #        dev --list     - List active sessions
 #        dev --kill     - Kill a session
+#
+# Set PROJECTS_DIR in your shell config to change the default location.
 
-SUPERPOWER="${SUPERPOWER_DIR:-$HOME/superpower}"
+PROJECTS_DIR="${PROJECTS_DIR:-$HOME/repos}"
 
 # Colors
 CYAN='\033[0;36m'
@@ -22,8 +24,8 @@ list_sessions() {
 
 # List available repos
 list_repos() {
-    echo -e "${CYAN}Available repos in $SUPERPOWER:${NC}"
-    ls -1 "$SUPERPOWER" | grep -v "^\." | while read repo; do
+    echo -e "${CYAN}Available repos in $PROJECTS_DIR:${NC}"
+    ls -1 "$PROJECTS_DIR" | grep -v "^\." | while read repo; do
         # Check if session exists
         if tmux has-session -t "$repo" 2>/dev/null; then
             echo -e "  ${GREEN}$repo${NC} (active)"
@@ -78,7 +80,7 @@ esac
 
 # Get repo name
 REPO="$1"
-WORK_DIR="$SUPERPOWER/$REPO"
+WORK_DIR="$PROJECTS_DIR/$REPO"
 
 # Check if repo exists
 if [ ! -d "$WORK_DIR" ]; then
