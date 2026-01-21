@@ -75,6 +75,24 @@ require("lazy").setup({
     end,
   },
 
+  -- Seamless navigation between tmux panes and vim splits
+  {
+    "christoomey/vim-tmux-navigator",
+    lazy = false,
+    cmd = {
+      "TmuxNavigateLeft",
+      "TmuxNavigateDown",
+      "TmuxNavigateUp",
+      "TmuxNavigateRight",
+    },
+    keys = {
+      { "<C-h>", "<cmd>TmuxNavigateLeft<cr>" },
+      { "<C-j>", "<cmd>TmuxNavigateDown<cr>" },
+      { "<C-k>", "<cmd>TmuxNavigateUp<cr>" },
+      { "<C-l>", "<cmd>TmuxNavigateRight<cr>" },
+    },
+  },
+
   -- Neo-tree (file explorer with git status)
   {
     "nvim-neo-tree/neo-tree.nvim",

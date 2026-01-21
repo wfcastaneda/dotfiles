@@ -105,6 +105,15 @@ Use with `v`, `d`, `c`, `y`:
 | `ds{char}` | Delete surround |
 | `cs{old}{new}` | Change surround |
 
+## Window/Split Navigation
+
+| Key | Action |
+|-----|--------|
+| `Ctrl+H` | Navigate left (split or tmux pane) |
+| `Ctrl+J` | Navigate down (split or tmux pane) |
+| `Ctrl+K` | Navigate up (split or tmux pane) |
+| `Ctrl+L` | Navigate right (split or tmux pane) |
+
 ## General
 
 | Key | Action |

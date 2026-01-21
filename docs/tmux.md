@@ -13,6 +13,7 @@ Changed from default `Ctrl+b` for easier reach. Press `Ctrl+a`, release, then pr
 
 ### Vim-Style Navigation
 - Pane navigation: `Ctrl+h/j/k/l` (no prefix needed)
+- Smart detection: Works seamlessly with vim/neovim splits (via vim-tmux-navigator)
 - Copy mode: vi keybindings
 - Resize panes: `Prefix + H/J/K/L`
 

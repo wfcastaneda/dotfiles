@@ -16,14 +16,16 @@ claude
 
 ---
 
-## Navigation (tmux Panes)
+## Navigation (Unified with vim-tmux-navigator)
 
 | Key | Context | Action |
 |-----|---------|--------|
-| `Ctrl+H` | tmux | Go left |
-| `Ctrl+J` | tmux | Go down |
-| `Ctrl+K` | tmux | Go up |
-| `Ctrl+L` | tmux | Go right |
+| `Ctrl+H` | tmux/nvim | Go left (pane or split) |
+| `Ctrl+J` | tmux/nvim | Go down (pane or split) |
+| `Ctrl+K` | tmux/nvim | Go up (pane or split) |
+| `Ctrl+L` | tmux/nvim | Go right (pane or split) |
+
+Smart detection: moves between nvim splits when inside nvim, tmux panes otherwise.
 
 ---
 

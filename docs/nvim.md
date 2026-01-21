@@ -27,6 +27,7 @@ A modern, single-file Neovim configuration built on **lazy.nvim** plugin manager
 - **dashboard-nvim**: Start screen with quick actions
 
 ### Navigation & Search
+- **vim-tmux-navigator**: Seamless Ctrl+h/j/k/l navigation between vim splits and tmux panes
 - **telescope.nvim**: Fuzzy finder for files, grep, symbols
 - **neo-tree.nvim**: File explorer with git status
 - **flash.nvim**: Jump anywhere on screen with 2-3 keystrokes
