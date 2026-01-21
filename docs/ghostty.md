@@ -47,7 +47,20 @@ Ghostty is a fast, GPU-accelerated terminal emulator. This configuration provide
 
 ## Keybindings
 
-No custom keybindings are configured. Use tmux for all split/pane management to avoid keybinding collisions and benefit from session persistence.
+### Passthrough Keys
+Ctrl+h/j/k/l are unbound so they pass through to tmux and neovim for vim-tmux-navigator:
+
+```
+keybind = ctrl+h=unbind
+keybind = ctrl+j=unbind
+keybind = ctrl+k=unbind
+keybind = ctrl+l=unbind
+```
+
+This allows seamless navigation between tmux panes and neovim splits using Ctrl+h/j/k/l.
+
+### Split Management
+Use tmux for all split/pane management instead of Ghostty's built-in splits. This provides session persistence and detach/reattach capability.
 
 ## Performance
 

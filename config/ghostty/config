@@ -53,5 +53,11 @@ window-title-font-family = Berkeley Mono
 confirm-close-surface = false
 quit-after-last-window-closed = true
 
+# Unbind ctrl+hjkl so they pass through to tmux/nvim
+keybind = ctrl+h=unbind
+keybind = ctrl+j=unbind
+keybind = ctrl+k=unbind
+keybind = ctrl+l=unbind
+
 # Default working directory (uses ~ expansion)
 working-directory = ~/superpower

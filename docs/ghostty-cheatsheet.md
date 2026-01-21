@@ -1,5 +1,11 @@
 # Ghostty Cheat Sheet
 
+## Passthrough to tmux/nvim
+
+| Key | Action |
+|-----|--------|
+| `Ctrl+H/J/K/L` | Passed through to tmux/nvim for pane navigation |
+
 ## Window Management
 
 | Key | Action |
