@@ -87,11 +87,13 @@ In copy mode, use vim keys: `h/j/k/l`, `w/b`, `/search`, etc.
 | `Prefix + Shift+I` | Install plugins |
 | `Prefix + Shift+U` | Update plugins |
 
-## Custom Layouts
+## Dev Sessions
 
 | Command | Action |
 |---------|--------|
-| `~/.tmux/layouts/superpower.sh` | Dev layout for superpower |
+| `dev` | List repos and active sessions |
+| `dev <repo>` | Create/attach to project session |
+| `dev --kill <name>` | Kill a session |
 
 ## Session Persistence
 

@@ -16,7 +16,7 @@ My development environment configuration for macOS.
 
 ```bash
 # Clone this repo
-git clone https://github.com/yourusername/dotfiles.git ~/repos/dotfiles
+git clone <your-repo-url> ~/repos/dotfiles
 cd ~/repos/dotfiles
 
 # Run install script (copies configs)

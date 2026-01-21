@@ -52,20 +52,38 @@ Minimal design:
 - **Right**: Time (HH:MM)
 - **Windows**: Current window highlighted in cyan
 
-## Layout Script
+## Layout Scripts
 
-Location: `~/.tmux/layouts/superpower.sh`
+Location: `~/.tmux/layouts/`
 
-Creates a 3-pane development layout:
+### dev.sh (Primary)
+
+Smart session launcher for project switching:
+
+```bash
+dev              # List repos and active sessions
+dev ts-server    # Create/attach to project session
+dev --kill name  # Kill a session
+```
+
+Creates a 3-pane layout per project:
 ```
 ┌──────────────┬─────────────────────────────┐
-│              │       nvim (85%)            │
+│              │       nvim (90%)            │
 │ Claude Code  ├─────────────────────────────┤
-│   (40%)      │      terminal (15%)         │
+│   (40%)      │      terminal (10%)         │
 └──────────────┴─────────────────────────────┘
 ```
 
-Run with: `~/.tmux/layouts/superpower.sh`
+Sessions persist - detach with `Ctrl+a, d` and reattach with `dev <project>`.
+
+### superpower.sh
+
+Simple script for the main superpower monorepo session:
+
+```bash
+~/.tmux/layouts/superpower.sh
+```
 
 ## Session Management
 

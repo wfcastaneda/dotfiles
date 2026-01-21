@@ -7,11 +7,14 @@ Quick reference for the complete dev environment.
 ## Quick Start
 
 ```bash
-# Start dev environment
-~/.tmux/layouts/superpower.sh
+# List available repos and sessions
+dev
 
-# Then in left pane:
-claude
+# Open a project (creates session with Claude Code + nvim + terminal)
+dev ts-server
+
+# Detach from session: Ctrl+a, d
+# Reattach to session: dev ts-server
 ```
 
 ---
