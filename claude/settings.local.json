@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(tree:*)",
+      "Bash(grep:*)",
+      "Bash(nvim:*)",
+      "Bash(bash -n:*)",
+      "Bash(git add:*)",
+      "Bash(git push)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nAdd vim-tmux-navigator for seamless pane/split navigation\n\n- Add smart vim detection in tmux config \\(checks if pane is running nvim\\)\n- Add vim-tmux-navigator plugin to neovim with Ctrl+h/j/k/l mappings\n- Ctrl+h/j/k/l now seamlessly navigates between nvim splits and tmux panes\n- Update documentation to reflect unified navigation\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(ps:*)",
+      "Bash(tmux list-keys:*)",
+      "Bash(tmux display-message:*)",
+      "Bash(pgrep:*)",
+      "Bash(tmux list-panes:*)",
+      "Bash(tmux source:*)",
+      "Bash(ghostty +list-keybinds:*)",
+      "Bash(ghostty --version:*)",
+      "Bash(git commit:*)",
+      "Bash(ls:*)",
+      "Bash(git push:*)"
+    ]
+  }
+}

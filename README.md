@@ -8,6 +8,8 @@ My development environment configuration for macOS.
 - **Neovim** - Modern editor with LSP, Telescope, and AI completion
 - **tmux** - Terminal multiplexer with session persistence
 - **Ghostty** - Fast, GPU-accelerated terminal emulator
+- **Karabiner** - Keyboard remapping (Caps Lock as Esc/modifier for vim-style navigation)
+- **Claude Code** - Claude Code CLI permissions
 - **dev** - Smart session launcher for project switching
 
 ## Quick Start
@@ -17,8 +19,11 @@ My development environment configuration for macOS.
 git clone https://github.com/yourusername/dotfiles.git ~/repos/dotfiles
 cd ~/repos/dotfiles
 
-# Run install script
+# Run install script (copies configs)
 ./install.sh
+
+# Or use symlinks (changes to repo are reflected immediately)
+./install.sh --link
 ```
 
 ## Manual Installation
@@ -176,3 +181,5 @@ See [docs/cheatsheet.md](docs/cheatsheet.md) for the complete reference.
 | tmux | `~/.tmux.conf` |
 | tmux layouts | `~/.tmux/layouts/` |
 | Ghostty | `~/Library/Application Support/com.mitchellh.ghostty/config` |
+| Karabiner | `~/.config/karabiner/karabiner.json` |
+| Claude Code | `~/.claude/settings.local.json` |
