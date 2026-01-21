@@ -47,18 +47,7 @@ Ghostty is a fast, GPU-accelerated terminal emulator. This configuration provide
 
 ## Keybindings
 
-Custom keybindings for splits (vim-style navigation):
-
-| Key | Action |
-|-----|--------|
-| `Cmd+D` | Split right |
-| `Cmd+Shift+T` | Split down |
-| `Ctrl+H` | Go to left split |
-| `Ctrl+J` | Go to bottom split |
-| `Ctrl+K` | Go to top split |
-| `Ctrl+L` | Go to right split |
-
-**Note**: With tmux, you'll primarily use tmux's split management instead of Ghostty's native splits.
+No custom keybindings are configured. Use tmux for all split/pane management to avoid keybinding collisions and benefit from session persistence.
 
 ## Performance
 
@@ -94,14 +83,11 @@ foreground = c0caf5
 font-feature = -liga
 ```
 
-## Comparison with tmux
+## Relationship with tmux
 
-| Feature | Ghostty Native | tmux |
-|---------|---------------|------|
-| Splits | Yes | Yes |
-| Session persistence | No | Yes (survives restart) |
-| Detach/reattach | No | Yes |
-| Remote sessions | No | Yes |
-| Scrollback | Native | tmux buffer |
+Ghostty is used purely as the terminal emulator. All split/pane management is handled by tmux, which provides:
 
-**Recommendation**: Use tmux for session management, Ghostty as the terminal emulator.
+- Session persistence (survives restart)
+- Detach/reattach capability
+- Remote session support
+- Scripted layouts (see `dev.sh`)

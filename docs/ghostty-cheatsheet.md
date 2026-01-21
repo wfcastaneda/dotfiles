@@ -9,19 +9,6 @@
 | `Cmd+W` | Close tab/pane |
 | `Cmd+Shift+W` | Close window |
 
-## Native Splits
-
-| Key | Action |
-|-----|--------|
-| `Cmd+D` | Split right |
-| `Cmd+Shift+T` | Split down |
-| `Ctrl+H` | Go to left split |
-| `Ctrl+J` | Go to bottom split |
-| `Ctrl+K` | Go to top split |
-| `Ctrl+L` | Go to right split |
-
-**Note**: With tmux, use tmux splits instead (they persist across restarts).
-
 ## Tabs
 
 | Key | Action |

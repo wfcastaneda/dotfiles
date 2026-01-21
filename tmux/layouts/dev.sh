@@ -99,8 +99,12 @@ fi
 
 echo -e "${GREEN}Creating new session:${NC} $SESSION"
 
-# Create new session
-tmux new-session -d -s "$SESSION" -c "$WORK_DIR"
+# Get terminal dimensions
+TERM_WIDTH=$(tput cols)
+TERM_HEIGHT=$(tput lines)
+
+# Create new session with known size
+tmux new-session -d -s "$SESSION" -c "$WORK_DIR" -x "$TERM_WIDTH" -y "$TERM_HEIGHT"
 
 # Split: new pane on RIGHT gets 60% width (left keeps 40% for Claude Code)
 tmux split-window -t "$SESSION:1" -h -p 60 -c "$WORK_DIR"

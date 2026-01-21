@@ -20,10 +20,10 @@ claude
 
 | Key | Context | Action |
 |-----|---------|--------|
-| `Ctrl+H` | tmux/nvim/ghostty | Go left |
-| `Ctrl+J` | tmux/nvim/ghostty | Go down |
-| `Ctrl+K` | tmux/nvim/ghostty | Go up |
-| `Ctrl+L` | tmux/nvim/ghostty | Go right |
+| `Ctrl+H` | tmux/nvim | Go left |
+| `Ctrl+J` | tmux/nvim | Go down |
+| `Ctrl+K` | tmux/nvim | Go up |
+| `Ctrl+L` | tmux/nvim | Go right |
 
 ---
 
@@ -124,8 +124,6 @@ claude
 |-----|--------|
 | `Cmd+N` | New window |
 | `Cmd+T` | New tab |
-| `Cmd+D` | Split right |
-| `Cmd+Shift+T` | Split down |
 | `Cmd++/-` | Font size |
 | `Cmd+Shift+,` | Reload config |
 
