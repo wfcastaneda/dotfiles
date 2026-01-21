@@ -37,7 +37,8 @@ cd ~/repos/dotfiles
 # Install dependencies
 brew install neovim tmux ripgrep fd
 
-# Install Ghostty (download from https://ghostty.org)
+# Install Ghostty
+brew install --cask ghostty
 
 # Install fonts (Berkeley Mono or your preferred Nerd Font)
 brew tap homebrew/cask-fonts
@@ -113,6 +114,8 @@ The base `.zshrc` sources `~/.zshrc.local` at the end for machine-specific confi
 
 ### Start a Dev Session
 
+The `dev` command manages tmux sessions for your projects. By default it looks for projects in `~/repos`.
+
 ```bash
 # List available repos and active sessions
 dev
@@ -130,6 +133,16 @@ dev ts-server    # Back to ts-server (preserved state)
 # Kill a session
 dev --kill ts-server
 ```
+
+#### Custom Projects Directory
+
+To use a different directory for your projects, set `PROJECTS_DIR` in your `~/.zshrc.local`:
+
+```bash
+export PROJECTS_DIR="$HOME/projects"  # or wherever your repos live
+```
+
+The `dev` command will then list and manage sessions from that directory instead.
 
 ### Layout
 

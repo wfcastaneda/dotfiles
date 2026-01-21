@@ -58,12 +58,20 @@ Location: `~/.tmux/layouts/`
 
 ### dev.sh (Primary)
 
-Smart session launcher for project switching:
+Smart session launcher for project switching. By default, looks for projects in `~/repos`.
 
 ```bash
 dev              # List repos and active sessions
 dev ts-server    # Create/attach to project session
 dev --kill name  # Kill a session
+```
+
+#### Custom Projects Directory
+
+Set `PROJECTS_DIR` in your shell config to use a different location:
+
+```bash
+export PROJECTS_DIR="$HOME/projects"
 ```
 
 Creates a 3-pane layout per project:
