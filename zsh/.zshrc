@@ -57,6 +57,9 @@ get_kube_info() {
       local namespace=$(kubectl config view --minify --output "jsonpath={..namespace}" 2>/dev/null)
       [ -z "$namespace" ] && namespace="default"
 
+      # Extract cluster name from ARN (arn:aws:eks:region:account:cluster/name -> name)
+      local display_context="${context##*/}"
+
       # Color coding: blue=dev, yellow=staging, red=production
       local context_color="blue"
       if [[ "$context" == *"staging"* ]] || [[ "$context" == *"stg"* ]]; then
@@ -72,7 +75,7 @@ get_kube_info() {
         namespace_color="red"
       fi
 
-      echo "[%F{$context_color}$context%F{white}:%F{$namespace_color}$namespace%F{white}]"
+      echo "[%F{$context_color}$display_context%F{white}:%F{$namespace_color}$namespace%F{white}]"
     fi
   fi
 }
