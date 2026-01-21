@@ -91,10 +91,13 @@ cp ~/repos/dotfiles/config/ghostty/config ~/Library/Application\ Support/com.mit
 ### Dev Command
 
 ```bash
-# Add alias to your shell
+# Add alias and SUPERPOWER_DIR to your shell (zsh example)
+echo 'export SUPERPOWER_DIR="${SUPERPOWER_DIR:-$HOME/superpower}"' >> ~/.zshrc
 echo 'alias dev="~/.tmux/layouts/dev.sh"' >> ~/.zshrc
 source ~/.zshrc
 ```
+
+Note: The install script automatically detects your shell (zsh/bash/fish) and adds these to the correct rc file.
 
 ## Usage
 

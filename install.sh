@@ -24,7 +24,9 @@ fi
 
 # Install dependencies
 echo -e "${CYAN}Installing dependencies...${NC}"
-brew install neovim tmux ripgrep fd 2>/dev/null || true
+if ! brew install neovim tmux ripgrep fd; then
+    echo -e "${RED}Warning: Some brew packages may have failed to install${NC}"
+fi
 
 # Neovim
 echo -e "${CYAN}Setting up Neovim...${NC}"
@@ -69,11 +71,45 @@ fi
 ln -sf "$DOTFILES/config/ghostty/config" "$GHOSTTY_DIR/config"
 echo -e "${GREEN}✓ Ghostty config linked${NC}"
 
+# Detect user's shell and configure rc file
+echo -e "${CYAN}Setting up shell configuration...${NC}"
+USER_SHELL=$(basename "$SHELL")
+case "$USER_SHELL" in
+    zsh)
+        RC_FILE="$HOME/.zshrc"
+        ;;
+    bash)
+        RC_FILE="$HOME/.bashrc"
+        ;;
+    fish)
+        RC_FILE="$HOME/.config/fish/config.fish"
+        mkdir -p "$HOME/.config/fish"
+        ;;
+    *)
+        RC_FILE="$HOME/.zshrc"
+        echo -e "${YELLOW}Unknown shell: $USER_SHELL, defaulting to .zshrc${NC}"
+        ;;
+esac
+
+# Add SUPERPOWER_DIR export
+if ! grep -q 'SUPERPOWER_DIR=' "$RC_FILE" 2>/dev/null; then
+    if [ "$USER_SHELL" = "fish" ]; then
+        echo 'set -gx SUPERPOWER_DIR "$HOME/superpower"' >> "$RC_FILE"
+    else
+        echo 'export SUPERPOWER_DIR="${SUPERPOWER_DIR:-$HOME/superpower}"' >> "$RC_FILE"
+    fi
+    echo -e "${GREEN}✓ SUPERPOWER_DIR export added to $RC_FILE${NC}"
+else
+    echo -e "${GREEN}✓ SUPERPOWER_DIR already configured${NC}"
+fi
+
 # Dev alias
-echo -e "${CYAN}Setting up dev command...${NC}"
-if ! grep -q 'alias dev=' ~/.zshrc 2>/dev/null; then
-    echo 'alias dev="~/.tmux/layouts/dev.sh"' >> ~/.zshrc
-    echo -e "${GREEN}✓ dev alias added to ~/.zshrc${NC}"
+if ! grep -q 'alias dev=' "$RC_FILE" 2>/dev/null && [ "$USER_SHELL" != "fish" ]; then
+    echo 'alias dev="~/.tmux/layouts/dev.sh"' >> "$RC_FILE"
+    echo -e "${GREEN}✓ dev alias added to $RC_FILE${NC}"
+elif [ "$USER_SHELL" = "fish" ] && ! grep -q 'alias dev ' "$RC_FILE" 2>/dev/null; then
+    echo 'alias dev "~/.tmux/layouts/dev.sh"' >> "$RC_FILE"
+    echo -e "${GREEN}✓ dev alias added to $RC_FILE${NC}"
 else
     echo -e "${GREEN}✓ dev alias already exists${NC}"
 fi

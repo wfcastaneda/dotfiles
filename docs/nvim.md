@@ -24,7 +24,6 @@ A modern, single-file Neovim configuration built on **lazy.nvim** plugin manager
 - **bufferline.nvim**: Visual tab bar for open buffers
 - **indent-blankline.nvim**: Vertical indent guides
 - **mini.indentscope**: Animated scope highlighting
-- **nvim-notify**: Pretty popup notifications
 - **dashboard-nvim**: Start screen with quick actions
 
 ### Navigation & Search
@@ -64,6 +63,8 @@ Configured via Mason with automatic installation:
 |--------|----------|
 | ts_ls | TypeScript/JavaScript |
 | gopls | Go |
+| jsonls | JSON (with schema validation) |
+| yamlls | YAML (with schema validation) |
 
 ## Formatters (conform.nvim)
 

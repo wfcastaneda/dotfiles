@@ -53,5 +53,5 @@ window-title-font-family = Berkeley Mono
 confirm-close-surface = false
 quit-after-last-window-closed = true
 
-# Default working directory
-working-directory = /Users/will/superpower
+# Default working directory (uses ~ expansion)
+working-directory = ~/superpower

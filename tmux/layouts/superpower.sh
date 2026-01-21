@@ -5,7 +5,7 @@
 # RIGHT BOTTOM: terminal (60% width, 15% height)
 
 SESSION="superpower"
-WORK_DIR="$HOME/superpower"
+WORK_DIR="${SUPERPOWER_DIR:-$HOME/superpower}"
 
 # Kill existing session if it exists
 tmux kill-session -t $SESSION 2>/dev/null

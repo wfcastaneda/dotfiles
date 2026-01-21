@@ -16,14 +16,14 @@ claude
 
 ---
 
-## Navigation (Works Everywhere)
+## Navigation (tmux Panes)
 
 | Key | Context | Action |
 |-----|---------|--------|
-| `Ctrl+H` | tmux/nvim | Go left |
-| `Ctrl+J` | tmux/nvim | Go down |
-| `Ctrl+K` | tmux/nvim | Go up |
-| `Ctrl+L` | tmux/nvim | Go right |
+| `Ctrl+H` | tmux | Go left |
+| `Ctrl+J` | tmux | Go down |
+| `Ctrl+K` | tmux | Go up |
+| `Ctrl+L` | tmux | Go right |
 
 ---
 
@@ -44,8 +44,8 @@ claude
 
 | Key | Action |
 |-----|--------|
-| `Ctrl+a, d` | Split right |
-| `Ctrl+a, D` | Split down |
+| `Ctrl+a, \|` | Split right (horizontal) |
+| `Ctrl+a, -` | Split down (vertical) |
 | `Ctrl+a, H/J/K/L` | Resize pane |
 
 ### Windows

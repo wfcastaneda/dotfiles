@@ -5,7 +5,7 @@
 #        dev --list     - List active sessions
 #        dev --kill     - Kill a session
 
-SUPERPOWER="$HOME/superpower"
+SUPERPOWER="${SUPERPOWER_DIR:-$HOME/superpower}"
 
 # Colors
 CYAN='\033[0;36m'
@@ -22,7 +22,7 @@ list_sessions() {
 
 # List available repos
 list_repos() {
-    echo -e "${CYAN}Available repos in ~/superpower:${NC}"
+    echo -e "${CYAN}Available repos in $SUPERPOWER:${NC}"
     ls -1 "$SUPERPOWER" | grep -v "^\." | while read repo; do
         # Check if session exists
         if tmux has-session -t "$repo" 2>/dev/null; then

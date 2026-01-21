@@ -34,10 +34,8 @@ Prefix: `Ctrl+a` (press, release, then next key)
 
 | Key | Action |
 |-----|--------|
-| `Prefix + d` | Split right |
-| `Prefix + D` | Split down |
-| `Prefix + \|` | Split right |
-| `Prefix + -` | Split down |
+| `Prefix + \|` | Split right (horizontal) |
+| `Prefix + -` | Split down (vertical) |
 
 ### Navigate (No Prefix!)
 

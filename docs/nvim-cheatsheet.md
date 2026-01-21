@@ -105,15 +105,6 @@ Use with `v`, `d`, `c`, `y`:
 | `ds{char}` | Delete surround |
 | `cs{old}{new}` | Change surround |
 
-## Windows
-
-| Key | Action |
-|-----|--------|
-| `Ctrl+H` | Move to left split |
-| `Ctrl+J` | Move to lower split |
-| `Ctrl+K` | Move to upper split |
-| `Ctrl+L` | Move to right split |
-
 ## General
 
 | Key | Action |

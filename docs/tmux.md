@@ -26,7 +26,7 @@ Configured for 256 colors and RGB true color, matching Ghostty's capabilities.
 | Prefix | `Ctrl+a` | Easier than default `Ctrl+b` |
 | Base index | 1 | Windows/panes start at 1, not 0 |
 | Mouse | Enabled | Click to focus, scroll, resize |
-| Escape time | 0 | No delay for vim escape key |
+| Escape time | 10ms | Minimal delay for vim escape key |
 | History limit | 50000 | Large scrollback buffer |
 
 ## Plugins

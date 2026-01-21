@@ -4,6 +4,7 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- Core options
+vim.opt.guifont = "Berkeley Mono:h13"
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.signcolumn = "yes"
@@ -43,7 +44,7 @@ vim.opt.backup = false
 
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
   vim.fn.system({
     "git", "clone", "--filter=blob:none",
     "https://github.com/folke/lazy.nvim.git",
@@ -60,8 +61,17 @@ require("lazy").setup({
     lazy = false,
     priority = 1000,
     config = function()
-      require("github-theme").setup({})
-      vim.cmd("colorscheme github_dark_default")
+      require("github-theme").setup({
+        options = {
+          transparent = true,
+          styles = {
+            keywords = "bold",
+            functions = "NONE",
+            variables = "NONE",
+          },
+        },
+      })
+      vim.cmd("colorscheme github_dark_high_contrast")
     end,
   },
 
@@ -153,21 +163,28 @@ require("lazy").setup({
     end,
   },
 
-  -- Treesitter (syntax highlighting) - NEW API
+  -- Treesitter (syntax highlighting)
   {
     "nvim-treesitter/nvim-treesitter",
-    branch = "main",
+    branch = "master",
     lazy = false,
     build = ":TSUpdate",
     config = function()
-      require("nvim-treesitter").setup({
-        ensure_installed = { "typescript", "tsx", "javascript", "go", "gomod", "gosum", "lua", "json", "yaml", "markdown", "html", "css" },
-      })
-      vim.api.nvim_create_autocmd("FileType", {
-        pattern = "*",
-        callback = function()
-          pcall(vim.treesitter.start)
-        end,
+      require("nvim-treesitter.configs").setup({
+        ensure_installed = {
+          "typescript", "tsx", "javascript", "jsdoc",
+          "go", "gomod", "gosum",
+          "lua", "luadoc",
+          "json", "jsonc", "yaml", "toml",
+          "markdown", "markdown_inline",
+          "html", "css", "scss",
+          "bash", "dockerfile", "sql",
+          "graphql", "regex", "vim", "vimdoc",
+          "gitcommit", "gitignore", "diff",
+        },
+        auto_install = true,
+        highlight = { enable = true },
+        indent = { enable = true },
       })
     end,
   },
@@ -179,6 +196,7 @@ require("lazy").setup({
     dependencies = {
       "williamboman/mason.nvim",
       "williamboman/mason-lspconfig.nvim",
+      "b0o/schemastore.nvim",
     },
     config = function()
       require("mason").setup()
@@ -191,7 +209,7 @@ require("lazy").setup({
 
       -- Use mason-lspconfig handlers (avoids deprecation warning)
       require("mason-lspconfig").setup({
-        ensure_installed = { "ts_ls", "gopls" },
+        ensure_installed = { "ts_ls", "gopls", "jsonls", "yamlls" },
         automatic_installation = true,
         handlers = {
           -- Default handler
@@ -238,6 +256,32 @@ require("lazy").setup({
               },
             })
             vim.lsp.enable("gopls")
+          end,
+          -- JSON
+          ["jsonls"] = function()
+            vim.lsp.config("jsonls", {
+              capabilities = capabilities,
+              settings = {
+                json = {
+                  schemas = require("schemastore").schemas(),
+                  validate = { enable = true },
+                },
+              },
+            })
+            vim.lsp.enable("jsonls")
+          end,
+          -- YAML
+          ["yamlls"] = function()
+            vim.lsp.config("yamlls", {
+              capabilities = capabilities,
+              settings = {
+                yaml = {
+                  schemaStore = { enable = false, url = "" },
+                  schemas = require("schemastore").schemas(),
+                },
+              },
+            })
+            vim.lsp.enable("yamlls")
           end,
         },
       })
@@ -488,24 +532,6 @@ require("lazy").setup({
     end,
   },
 
-  -- Notifications (delete this block if too distracting)
-  {
-    "rcarriga/nvim-notify",
-    event = "VeryLazy",
-    opts = {
-      timeout = 3000,
-      max_height = function() return math.floor(vim.o.lines * 0.75) end,
-      max_width = function() return math.floor(vim.o.columns * 0.75) end,
-      render = "compact",
-      stages = "fade",
-    },
-    config = function(_, opts)
-      local notify = require("notify")
-      notify.setup(opts)
-      vim.notify = notify
-    end,
-  },
-
   -- Dashboard
   {
     "nvimdev/dashboard-nvim",
@@ -530,10 +556,10 @@ require("lazy").setup({
           "",
         },
         center = {
-          { action = function() require("telescope.builtin").find_files({ cwd = vim.fn.expand("~/superpower") }) end, desc = " Find file", icon = " ", key = "f" },
+          { action = function() require("telescope.builtin").find_files({ cwd = vim.env.SUPERPOWER_DIR or vim.fn.expand("~/superpower") }) end, desc = " Find file", icon = " ", key = "f" },
           { action = "ene | startinsert", desc = " New file", icon = " ", key = "n" },
           { action = function() require("telescope.builtin").oldfiles() end, desc = " Recent files", icon = " ", key = "r" },
-          { action = function() require("telescope.builtin").live_grep({ cwd = vim.fn.expand("~/superpower") }) end, desc = " Find text", icon = " ", key = "g" },
+          { action = function() require("telescope.builtin").live_grep({ cwd = vim.env.SUPERPOWER_DIR or vim.fn.expand("~/superpower") }) end, desc = " Find text", icon = " ", key = "g" },
           { action = "e ~/.config/nvim/init.lua", desc = " Config", icon = " ", key = "c" },
           { action = "Lazy", desc = " Plugins", icon = "󰒲 ", key = "p" },
           { action = "qa", desc = " Quit", icon = " ", key = "q" },
@@ -632,7 +658,7 @@ require("lazy").setup({
     config = true,
   },
 }, {
-  install = { colorscheme = { "github_dark_default" } },
+  install = { colorscheme = { "github_dark_high_contrast" } },
   performance = {
     rtp = {
       disabled_plugins = {
@@ -646,12 +672,6 @@ require("lazy").setup({
 vim.keymap.set("n", "<Esc>", "<cmd>noh<CR>", { desc = "Clear search" })
 vim.keymap.set("n", "<leader>w", "<cmd>w<CR>", { desc = "Save" })
 vim.keymap.set("n", "<leader>q", "<cmd>q<CR>", { desc = "Quit" })
-
--- Window navigation (matches ghostty)
-vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Move to left split" })
-vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Move to lower split" })
-vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Move to upper split" })
-vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move to right split" })
 
 -- Move lines
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move line down" })
