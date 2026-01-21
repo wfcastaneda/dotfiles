@@ -33,8 +33,8 @@ if [ -f ~/.config/nvim/init.lua ] && [ ! -L ~/.config/nvim/init.lua ]; then
     echo -e "${YELLOW}Backing up existing nvim config...${NC}"
     mv ~/.config/nvim/init.lua ~/.config/nvim/init.lua.backup.$(date +%s)
 fi
-cp "$DOTFILES/config/nvim/init.lua" ~/.config/nvim/init.lua
-echo -e "${GREEN}✓ Neovim config installed${NC}"
+ln -sf "$DOTFILES/config/nvim/init.lua" ~/.config/nvim/init.lua
+echo -e "${GREEN}✓ Neovim config linked${NC}"
 
 # tmux
 echo -e "${CYAN}Setting up tmux...${NC}"
@@ -42,12 +42,12 @@ if [ -f ~/.tmux.conf ] && [ ! -L ~/.tmux.conf ]; then
     echo -e "${YELLOW}Backing up existing tmux config...${NC}"
     mv ~/.tmux.conf ~/.tmux.conf.backup.$(date +%s)
 fi
-cp "$DOTFILES/tmux/.tmux.conf" ~/.tmux.conf
+ln -sf "$DOTFILES/tmux/.tmux.conf" ~/.tmux.conf
 
 mkdir -p ~/.tmux/layouts
-cp "$DOTFILES/tmux/layouts/"*.sh ~/.tmux/layouts/
-chmod +x ~/.tmux/layouts/*.sh
-echo -e "${GREEN}✓ tmux config installed${NC}"
+ln -sf "$DOTFILES/tmux/layouts/dev.sh" ~/.tmux/layouts/dev.sh
+ln -sf "$DOTFILES/tmux/layouts/superpower.sh" ~/.tmux/layouts/superpower.sh
+echo -e "${GREEN}✓ tmux config linked${NC}"
 
 # TPM (tmux plugin manager)
 if [ ! -d ~/.tmux/plugins/tpm ]; then
@@ -62,12 +62,12 @@ fi
 echo -e "${CYAN}Setting up Ghostty...${NC}"
 GHOSTTY_DIR="$HOME/Library/Application Support/com.mitchellh.ghostty"
 mkdir -p "$GHOSTTY_DIR"
-if [ -f "$GHOSTTY_DIR/config" ]; then
+if [ -f "$GHOSTTY_DIR/config" ] && [ ! -L "$GHOSTTY_DIR/config" ]; then
     echo -e "${YELLOW}Backing up existing Ghostty config...${NC}"
     mv "$GHOSTTY_DIR/config" "$GHOSTTY_DIR/config.backup.$(date +%s)"
 fi
-cp "$DOTFILES/config/ghostty/config" "$GHOSTTY_DIR/config"
-echo -e "${GREEN}✓ Ghostty config installed${NC}"
+ln -sf "$DOTFILES/config/ghostty/config" "$GHOSTTY_DIR/config"
+echo -e "${GREEN}✓ Ghostty config linked${NC}"
 
 # Dev alias
 echo -e "${CYAN}Setting up dev command...${NC}"
