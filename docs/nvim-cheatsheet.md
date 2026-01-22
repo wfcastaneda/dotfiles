@@ -49,6 +49,16 @@ Leader key: `Space`
 | `S` | Flash treesitter (select node) |
 | `r` | Remote flash (operator pending) |
 
+## Harpoon (Quick File Marks)
+
+| Key | Action |
+|-----|--------|
+| `<leader>a` | Add current file to harpoon |
+| `Ctrl+e` | Toggle harpoon menu |
+| `<leader>1-4` | Jump to harpoon mark 1-4 |
+| `<leader>[` | Previous harpoon mark |
+| `<leader>]` | Next harpoon mark |
+
 ## Search & Replace
 
 | Key | Action |
@@ -121,8 +131,8 @@ Use with `v`, `d`, `c`, `y`:
 | `<leader>w` | Save |
 | `<leader>q` | Quit |
 | `Esc` | Clear search highlight |
-| `Ctrl+D` | Page down (centered) |
-| `Ctrl+U` | Page up (centered) |
+| `Ctrl+D` | Page down (smooth scroll) |
+| `Ctrl+U` | Page up (smooth scroll) |
 | `J` (visual) | Move lines down |
 | `K` (visual) | Move lines up |
 

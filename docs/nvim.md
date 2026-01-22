@@ -20,17 +20,19 @@ A modern, single-file Neovim configuration built on **lazy.nvim** plugin manager
 
 ### Appearance
 - **github-nvim-theme**: Dark theme matching your terminal aesthetic
-- **lualine.nvim**: Status line with git, diagnostics, file info
+- **lualine.nvim**: Status line with icons for git, diagnostics, file info (globalstatus)
 - **bufferline.nvim**: Visual tab bar for open buffers
 - **indent-blankline.nvim**: Vertical indent guides
 - **mini.indentscope**: Animated scope highlighting
 - **dashboard-nvim**: Start screen with quick actions
+- **neoscroll.nvim**: Smooth scrolling for `<C-d>`, `<C-u>`, etc.
 
 ### Navigation & Search
 - **vim-tmux-navigator**: Seamless Ctrl+h/j/k/l navigation between vim splits and tmux panes
-- **telescope.nvim**: Fuzzy finder for files, grep, symbols
+- **telescope.nvim**: Fuzzy finder for files, grep, symbols (with clean borders and icons)
 - **neo-tree.nvim**: File explorer with git status
 - **flash.nvim**: Jump anywhere on screen with 2-3 keystrokes
+- **harpoon**: Quick marks for fast file switching (ThePrimeagen's harpoon2)
 - **grug-far.nvim**: Multi-file search and replace
 
 ### Code Intelligence

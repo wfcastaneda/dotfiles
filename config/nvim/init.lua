@@ -72,6 +72,9 @@ require("lazy").setup({
         },
       })
       vim.cmd("colorscheme github_dark_high_contrast")
+      -- Match tmux pane borders
+      vim.api.nvim_set_hl(0, "WinSeparator", { fg = "#333333" })
+      vim.api.nvim_set_hl(0, "TelescopeBorder", { fg = "#333333" })
     end,
   },
 
@@ -172,6 +175,12 @@ require("lazy").setup({
           layout_config = { prompt_position = "top" },
           sorting_strategy = "ascending",
           preview = { treesitter = false },
+          borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+          results_title = false,
+          prompt_title = false,
+          selection_caret = "> ",
+          prompt_prefix = "   ",
+          entry_prefix = "  ",
         },
         pickers = {
           find_files = { hidden = true },
@@ -471,20 +480,27 @@ require("lazy").setup({
   {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       require("lualine").setup({
         options = {
           theme = "auto",
           component_separators = "",
           section_separators = "",
+          globalstatus = true,
         },
         sections = {
-          lualine_a = { "mode" },
-          lualine_b = { "branch", "diff" },
-          lualine_c = { { "filename", path = 1 } },
-          lualine_x = { "diagnostics" },
-          lualine_y = { "filetype" },
-          lualine_z = { "location" },
+          lualine_a = { { "mode", icon = "" } },
+          lualine_b = {
+            { "branch", icon = "" },
+            { "diff", symbols = { added = " ", modified = " ", removed = " " } },
+          },
+          lualine_c = { { "filename", path = 1, symbols = { modified = " ●", readonly = " " } } },
+          lualine_x = {
+            { "diagnostics", symbols = { error = " ", warn = " ", info = " ", hint = " " } },
+          },
+          lualine_y = { { "filetype", icon_only = false } },
+          lualine_z = { { "location", icon = "" } },
         },
       })
     end,
@@ -626,6 +642,28 @@ require("lazy").setup({
     opts = {},
   },
 
+  -- Harpoon (quick file navigation)
+  {
+    "ThePrimeagen/harpoon",
+    branch = "harpoon2",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+      local harpoon = require("harpoon")
+      harpoon:setup()
+
+      vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end, { desc = "Harpoon add" })
+      vim.keymap.set("n", "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, { desc = "Harpoon menu" })
+
+      vim.keymap.set("n", "<leader>1", function() harpoon:list():select(1) end, { desc = "Harpoon 1" })
+      vim.keymap.set("n", "<leader>2", function() harpoon:list():select(2) end, { desc = "Harpoon 2" })
+      vim.keymap.set("n", "<leader>3", function() harpoon:list():select(3) end, { desc = "Harpoon 3" })
+      vim.keymap.set("n", "<leader>4", function() harpoon:list():select(4) end, { desc = "Harpoon 4" })
+
+      vim.keymap.set("n", "<leader>[", function() harpoon:list():prev() end, { desc = "Harpoon prev" })
+      vim.keymap.set("n", "<leader>]", function() harpoon:list():next() end, { desc = "Harpoon next" })
+    end,
+  },
+
   -- Flash (jump anywhere fast)
   {
     "folke/flash.nvim",
@@ -637,6 +675,19 @@ require("lazy").setup({
       { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
     },
     opts = {},
+  },
+
+  -- Smooth scrolling
+  {
+    "karb94/neoscroll.nvim",
+    event = "VeryLazy",
+    opts = {
+      mappings = { "<C-u>", "<C-d>", "<C-b>", "<C-f>", "zt", "zz", "zb" },
+      hide_cursor = false,
+      stop_eof = true,
+      respect_scrolloff = true,
+      cursor_scrolls_alone = true,
+    },
   },
 
   -- Surround
@@ -695,9 +746,7 @@ vim.keymap.set("n", "<leader>q", "<cmd>q<CR>", { desc = "Quit" })
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move line down" })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move line up" })
 
--- Keep cursor centered
-vim.keymap.set("n", "<C-d>", "<C-d>zz")
-vim.keymap.set("n", "<C-u>", "<C-u>zz")
+-- Keep cursor centered during search
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 

@@ -47,10 +47,17 @@ First time setup: `Prefix + Shift+I` (capital I)
 
 ## Status Bar
 
-Minimal design:
-- **Left**: Session name in blue
-- **Right**: Time (HH:MM)
-- **Windows**: Current window highlighted in cyan
+Minimal design with Nerd Font icons:
+- **Left**: Session name with  icon in blue
+- **Right**: Time (HH:MM) with 󰃰 icon
+- **Windows**: Folder  icons, current window highlighted in cyan
+
+## Pane Borders
+
+Dimmed, minimal borders that match neovim split dividers:
+- Inactive: `#333333` (barely visible)
+- Active: `#555555` (subtle but distinguishable)
+- Single-line style with no indicators
 
 ## Layout Scripts
 
