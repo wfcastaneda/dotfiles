@@ -40,6 +40,7 @@ Managed by TPM (Tmux Plugin Manager):
 | tpm | Plugin manager |
 | tmux-resurrect | Save/restore sessions |
 | tmux-continuum | Auto-save sessions every 15 min |
+| tmux-which-key | Which-key style popup showing keybindings after prefix |
 
 ### Installing Plugins
 

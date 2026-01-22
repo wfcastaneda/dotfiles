@@ -83,6 +83,7 @@ In copy mode, use vim keys: `h/j/k/l`, `w/b`, `/search`, etc.
 |-----|--------|
 | `Prefix + r` | Reload config |
 | `Prefix + ?` | List all keybindings |
+| `Prefix + Space` | Which-key popup (shows available actions) |
 | `Prefix + t` | Show clock |
 | `Prefix + Shift+I` | Install plugins |
 | `Prefix + Shift+U` | Update plugins |
