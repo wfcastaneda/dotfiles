@@ -42,7 +42,7 @@ Run an action from the palette by its title, or from the CLI by its name.
 
 | Name | Title | What it does |
 |------|-------|--------------|
-| `workbench` | Open Superpower Workbench | Opens a `dev` tab with devbox, the four frontends, ts-server, and ts-ai-chat |
+| `workbench` | Open Superpower Workbench | Opens a `dev` tab: devbox beside a 2x2 grid of the frontends, with ts-server and ts-ai-chat below |
 
 ```sh
 rex do workbench

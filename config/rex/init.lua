@@ -28,8 +28,10 @@ local function repo(name, input)
   }
 end
 
--- Layout:
---   top (60%):    devbox (50%) | website | react-app | superpower-admin | superpower-organizations
+-- Layout. No row has more than three columns, so every pane keeps a
+-- usable width:
+--   top (60%):    devbox (40%) | website          | react-app
+--                              | superpower-admin | superpower-organizations
 --   bottom (40%): ts-server | ts-ai-chat
 rex.action{
   name = "workbench",
@@ -37,10 +39,10 @@ rex.action{
   category = "Superpower",
   description = "Open the daily layout: devbox, the four frontends, ts-server, and ts-ai-chat.",
   run = function(ctx, args)
-    local frontends = rex.layout.horizontal(0.25, repo("website"),
-      rex.layout.horizontal(1 / 3, repo("react-app"),
-        rex.layout.horizontal(0.5, repo("superpower-admin"), repo("superpower-organizations"))))
-    local top = rex.layout.horizontal(0.5, repo("devbox", "make core/up && lzd"), frontends)
+    local frontends = rex.layout.vertical(0.5,
+      rex.layout.horizontal(0.5, repo("website"), repo("react-app")),
+      rex.layout.horizontal(0.5, repo("superpower-admin"), repo("superpower-organizations")))
+    local top = rex.layout.horizontal(0.4, repo("devbox", "make core/up && lzd"), frontends)
     local bottom = rex.layout.horizontal(0.5, repo("ts-server"), repo("ts-ai-chat"))
 
     local window, err = rex.session.new_window{
