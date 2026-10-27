@@ -1,0 +1,3 @@
+# Written by "rex terminfo setup" on each machine. Rex rewrites these files.
+ssh_config
+terminfo-hosts

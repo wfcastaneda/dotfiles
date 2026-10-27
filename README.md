@@ -9,6 +9,7 @@ My development environment configuration for macOS.
 - **Zsh** - Shell config with git/k8s prompt, aliases, and completions
 - **Neovim** - Modern editor with LSP, Telescope, and AI completion
 - **tmux** - Terminal multiplexer with session persistence
+- **Rex** - Native terminal multiplexer, configured in Lua (see [docs/rex.md](docs/rex.md))
 - **Ghostty** - Fast, GPU-accelerated terminal emulator
 - **Karabiner** - Keyboard remapping (Caps Lock as Esc/modifier for vim-style navigation)
 - **Claude Code** - Claude Code CLI permissions
@@ -190,6 +191,7 @@ See [docs/cheatsheet.md](docs/cheatsheet.md) for the complete reference.
 |--------|----------|
 | Zsh | `~/.zshrc` |
 | Neovim | `~/.config/nvim/init.lua` |
+| Rex | `~/.config/rex/init.lua` |
 | tmux | `~/.tmux.conf` |
 | tmux layouts | `~/.tmux/layouts/` |
 | Ghostty | `~/Library/Application Support/com.mitchellh.ghostty/config` |

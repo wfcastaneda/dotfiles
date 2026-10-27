@@ -52,7 +52,7 @@ install_config() {
         ln -sf "$src" "$dest"
         echo -e "${GREEN}✓ ${name} config linked${NC}"
     else
-        cp "$src" "$dest"
+        cp -R "$src" "$dest"
         echo -e "${GREEN}✓ ${name} config copied${NC}"
     fi
 }
@@ -95,6 +95,9 @@ if [ ! -d ~/.tmux/plugins/tpm ]; then
 else
     echo -e "${GREEN}✓ TPM already installed${NC}"
 fi
+
+# Rex (the whole directory, so init.lua can require files beside it)
+install_config "Rex" "$DOTFILES/config/rex" ~/.config/rex
 
 # Ghostty
 GHOSTTY_DIR="$HOME/Library/Application Support/com.mitchellh.ghostty"
