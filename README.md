@@ -191,6 +191,7 @@ See [docs/cheatsheet.md](docs/cheatsheet.md) for the complete reference.
 |--------|----------|
 | Zsh | `~/.zshrc` |
 | Neovim | `~/.config/nvim/init.lua` |
+| KDash | `~/.config/kdash/config.yaml` |
 | Rex | `~/.config/rex/init.lua` |
 | tmux | `~/.tmux.conf` |
 | tmux layouts | `~/.tmux/layouts/` |

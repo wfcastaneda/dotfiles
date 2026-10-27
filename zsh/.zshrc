@@ -9,6 +9,7 @@ export PATH="$HOME/bin:$HOME/.local/bin:$HOME/.bun/bin:$PATH"
 # =============================================================================
 
 export XDG_CONFIG_HOME="$HOME/.config"
+export KDASH_CONFIG="$XDG_CONFIG_HOME/kdash/config.yaml"
 
 # =============================================================================
 # NVM (Node Version Manager)
@@ -96,7 +97,8 @@ alias g='git'
 # ALIASES - Kubernetes
 # =============================================================================
 
-alias k='k9s --splashless'
+alias k='kdash'
+alias k9='k9s --splashless'
 alias kctx="kubectl config current-context"
 alias kctxs="kubectl config get-contexts"
 alias kmin="kubectl config use-context minikube"
@@ -114,3 +116,14 @@ alias tmux-reload='tmux source-file ~/.tmux.conf'
 
 # Source local config if it exists (for machine-specific settings)
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
+alias lzd='lazydocker'
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
+
+# Export AWS default-profile creds into the environment so docker-compose
+# (e.g. superpower/devbox) doesn't warn that AWS_ACCESS_KEY_ID is unset.
+export AWS_ACCESS_KEY_ID="$(aws configure get aws_access_key_id 2>/dev/null)"
+export AWS_SECRET_ACCESS_KEY="$(aws configure get aws_secret_access_key 2>/dev/null)"
+
+# bun completions
+[ -s "/private/var/folders/j4/vwyqy4xs7_3b0bstctytzw640000gn/T/tmp.xKQQXmQRxl/bun/_bun" ] && source "/private/var/folders/j4/vwyqy4xs7_3b0bstctytzw640000gn/T/tmp.xKQQXmQRxl/bun/_bun"

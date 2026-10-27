@@ -81,6 +81,9 @@ fi
 # Neovim
 install_config "Neovim" "$DOTFILES/config/nvim/init.lua" ~/.config/nvim/init.lua
 
+# KDash
+install_config "KDash" "$DOTFILES/config/kdash/config.yaml" ~/.config/kdash/config.yaml
+
 # tmux
 install_config "tmux" "$DOTFILES/tmux/.tmux.conf" ~/.tmux.conf
 mkdir -p ~/.tmux/layouts

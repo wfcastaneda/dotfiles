@@ -52,7 +52,9 @@
       "Bash(basename:*)",
       "Bash(dirname:*)",
       "Bash(realpath:*)",
-      "Bash(stat:*)"
+      "Bash(stat:*)",
+      "WebFetch(domain:github.com)",
+      "WebSearch"
     ]
   }
 }

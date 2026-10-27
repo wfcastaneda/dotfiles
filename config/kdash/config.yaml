@@ -1,0 +1,17 @@
+# GitHub Dark (Primer) palette
+default_theme: custom
+
+custom_theme:
+  base: macchiato
+  is_dark: true
+  accent: "#1F6FEB"
+  secondary: "#AB7DF8"
+  label: "#4493F8"
+  muted: "#9198A1"
+  highlight: "#58A6FF"
+  bg: "#0D1117"
+  fg: "#F0F6FC"
+  on_accent: "#FFFFFF"
+  error: "#F85149"
+  warning: "#D29922"
+  success: "#3FB950"
